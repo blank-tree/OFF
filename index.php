@@ -18,10 +18,17 @@
 	</div>
 
 
-	<div style="position: relative" class="margin">
-		<video onloadedmetadata="onPlay(this)" id="inputVideo" autoplay muted></video>
-		<canvas id="overlay" />
+	<div class="grid-container">
+		<div class="grid-x grid-padding-x">
+			<div class="large-12 cell">
+				<div style="position: relative" class="margin">
+					<video onloadedmetadata="onPlay()" id="inputVideo" autoplay muted></video>
+					<canvas id="overlay" />
+				</div>
+			</div>
+		</div>
 	</div>
+	
 
 
 

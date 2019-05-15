@@ -1,20 +1,17 @@
 $(document).foundation();
 
-$(function() {
+
+	// Settings
+	let minConfidence = 0.5
+
+
 	async function onPlay() {
-
-		// Settings
-		let minConfidence = 0.5
-
-
 		const videoEl = $('#inputVideo').get(0);
 
 		if(videoEl.paused || videoEl.ended || !isFaceDetectionModelLoaded())
 			return setTimeout(() => onPlay())
 
 		const options = getFaceDetectorOptions();
-
-		const ts = Date.now();
 
 		const result = await faceapi.detectSingleFace(videoEl, options);
 
@@ -25,6 +22,21 @@ $(function() {
 		}
 
 		setTimeout(() => onPlay());
+	}
+
+	async function run() {
+		await changeFaceDetector();
+
+		const stream = await navigator.mediaDevices.getUserMedia({ video: {} });
+		const videoEl = $('#inputVideo').get(0);
+		videoEl.srcObject = stream;
+	}
+
+	async function changeFaceDetector() {
+		await faceapi.nets.ssdMobilenetv1.loadFromUri('/models');
+		if (!isFaceDetectionModelLoaded()) {
+			await getCurrentFaceDetectionNet().load('/');
+		}
 	}
 
 	function getFaceDetectorOptions() {
@@ -38,4 +50,8 @@ $(function() {
 	function isFaceDetectionModelLoaded() {
 		return !!getCurrentFaceDetectionNet().params
 	}
-});
+
+	$(function() {
+
+		run();
+	});
