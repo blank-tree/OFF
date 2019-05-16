@@ -3,7 +3,7 @@ let minConfidence = 0.5
 
 
 async function onPlay() {
-	const videoEl = $('#inputVideo').get(0);
+	const videoEl = $('#inputvideo').get(0);
 
 	if(videoEl.paused || videoEl.ended || !isFaceDetectionModelLoaded())
 		return setTimeout(() => onPlay())
@@ -14,14 +14,29 @@ async function onPlay() {
 
 	if (result) {
 		const canvas = $('#overlay').get(0);
-		const capture = $('#captureoverlay').get(0);
 		const dims = faceapi.matchDimensions(canvas, videoEl, true);
-		faceapi.matchDimensions(capture, videoEl, true);
-		faceapi.draw.drawDetections(canvas, faceapi.resizeResults(result, dims));
+
+		// faceapi.draw.drawDetections(canvas, faceapi.resizeResults(result, dims));
 		// faceapi.draw.DrawBox({ x: 50, y: 50, width: 100, height: 100 }, { label: 'Hello I am a box!', lineWidth: 2 });
+
+		let box = [
+			result["_box"]["_x"],
+			result["_box"]["_y"],
+			result["_box"]["_width"],
+			result["_box"]["_height"]
+		];
+
+		let c = document.getElementById("overlay");
+		let ctx = c.getContext("2d");
+		ctx.rect(...box);
+		ctx.stroke();
+
 	} else {
 		// const canvas = $('#overlay').get(0);
 		// canvas.width = width;
+
+		const canvas = $('#overlay').get(0);
+		const dims = faceapi.matchDimensions(canvas, videoEl, true);
 	}
 
 	setTimeout(() => onPlay());
@@ -31,7 +46,7 @@ async function run() {
 	await changeFaceDetector();
 
 	const stream = await navigator.mediaDevices.getUserMedia({ video: {} });
-	const videoEl = $('#inputVideo').get(0);
+	const videoEl = $('#inputvideo').get(0);
 	videoEl.srcObject = stream;
 }
 
@@ -55,21 +70,25 @@ function isFaceDetectionModelLoaded() {
 }
 
 function captureImage() {
-	let captureOverlay = $('#captureoverlay').get(0);
-	let videoEl = $('#inputVideo').get(0);
+	let videoEl = document.getElementById("inputvideo");
 
-	captureOverlay.getContext('2d')
-		.drawImage(videoEl, 0, 0, captureOverlay.width, captureOverlay.height);
+	videoEl.pause();
 
-	let img = document.createElement("img");
-	img.src = captureOverlay.toDataURL();
-	captureOverlay.prepend(img);
+	// captureOverlay.getContext('2d')
+	// 	.drawImage(videoEl, 0, 0, captureOverlay.width, captureOverlay.height);
+
+	// let img = document.createElement("img");
+	// img.src = captureOverlay.toDataURL();
+	// captureOverlay.prepend(img);
 }
 
 function clearImage() {
-	let captureOverlay = $('#captureoverlay').get(0);
-	captureOverlay.getContext('2d')
-		.clearRect(0, 0, captureOverlay.width, captureOverlay.height);
+	let videoEl = document.getElementById("inputvideo");
+	videoEl.play();
+}
+
+function uploadImage() {
+
 }
 
 let $buttonCapture = $('#capture');
@@ -79,10 +98,6 @@ let $buttonUpload = $('#upload');
 
 $(document).foundation();
 $(function() {
-
-	$buttonCancel.hide();
-	$buttonUpload.hide();
-
 	run();
 
 	$buttonCapture.click(function(e) {
@@ -103,5 +118,10 @@ $(function() {
 		clearImage();
 	});
 
+	$buttonUpload.click(function(e) {
+		e.preventDefault();
+		console.log('upload picture');
+		uploadImage();
+	});
 
 });

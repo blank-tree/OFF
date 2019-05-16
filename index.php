@@ -21,11 +21,10 @@
 	<div class="grid-container">
 		<div class="grid-x grid-padding-x">
 			<div class="large-12 cell">
-				<div style="position: relative" class="margin">
-					<video onloadedmetadata="onPlay()" id="inputVideo" autoplay muted></video>
+				<div id="cam">
+					<video onloadedmetadata="onPlay()" id="inputvideo" autoplay muted></video>
 					<canvas id="overlay"></canvas>
 				</div>
-				<canvas id="captureoverlay" width="640" height="480"></canvas>
 			</div>
 		</div>
 	</div>
@@ -35,8 +34,8 @@
 		<div class="grid-x grid-padding-x">
 			<div class="large-12 cell">
 				<button type="button" class="button large hollow" id="capture">Capture!</button>
-				<button type="button" class="button large hollow" id="capture-cancel">Cancel</button>
-				<button type="button" class="button large hollow" id="upload">Upload</button>
+				<button type="button" class="button large hollow" style="display: none;" id="capture-cancel">Cancel</button>
+				<button type="button" class="button large hollow" style="display: none;" id="upload">Upload</button>
 			</div>
 		</div>
 	</div>
