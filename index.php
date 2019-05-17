@@ -33,7 +33,7 @@
 	<div class="grid-container">
 		<div class="grid-x grid-padding-x">
 			<div class="large-12 cell">
-				<button type="button" class="button large hollow" id="capture">Capture!</button>
+				<button type="button" class="button large hollow" id="capture">Save Picture</button>
 				<button type="button" class="button large hollow" style="display: none;" id="capture-cancel">Cancel</button>
 				<button type="button" class="button large hollow" style="display: none;" id="upload">Upload</button>
 			</div>

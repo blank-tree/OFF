@@ -15,9 +15,7 @@ async function onPlay() {
 	if (result) {
 		const canvas = $('#overlay').get(0);
 		const dims = faceapi.matchDimensions(canvas, videoEl, true);
-
 		// faceapi.draw.drawDetections(canvas, faceapi.resizeResults(result, dims));
-		// faceapi.draw.DrawBox({ x: 50, y: 50, width: 100, height: 100 }, { label: 'Hello I am a box!', lineWidth: 2 });
 
 		let box = [
 			result["_box"]["_x"],
@@ -32,9 +30,6 @@ async function onPlay() {
 		ctx.stroke();
 
 	} else {
-		// const canvas = $('#overlay').get(0);
-		// canvas.width = width;
-
 		const canvas = $('#overlay').get(0);
 		const dims = faceapi.matchDimensions(canvas, videoEl, true);
 	}
