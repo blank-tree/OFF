@@ -40,6 +40,80 @@
 		</div>
 	</div>
 
+	<div class="grid-container" id="filter-selection">
+		<div class="grid-x grid-padding-x">
+			<div class="large-12 cell">
+
+				<?php
+
+				$representation = '/static/representation/';
+				$filter = '/static/filter/';
+
+				$recognized = scandir($representation . 'recognized', 1);
+				$detected = scandir($representation . 'detected', 1);
+				$hidden = scandir($representation . 'hidden', 1);
+
+				?>
+				
+				<ul class="tabs" data-tabs id="off-tabs">
+					<li class="tabs-title is-active">
+						<a href="#recognized" aria-selected="true">Person Recognized</a>
+					</li>
+					<li class="tabs-title">
+						<a href="#detected" aria-selected="true">Person Detected</a>
+					</li>
+					<li class="tabs-title">
+						<a href="#hidden" aria-selected="true">Person Hidden</a>
+					</li>
+				</ul>
+
+				<div class="tabs-content" data-tabs-content="off-tabs">
+					<div class="tabs-panel is-active" id="recognized">
+						<div class="grid-container">
+							<div class="grid-x grid-padding-x">
+								<?php foreach($recognized as $item): ?>
+									<div class="large-2 cell">
+										<img src="<?= $representation . $item ?>" 
+											 alt="<?= pathinfo($item)['filename'] ?>" 
+											 data-filter="<?= $filter . $item ?>">
+									</div>
+								<?php endforeach; ?>
+							</div>
+						</div>
+					</div>
+					<div class="tabs-panel" id="detected">
+						<div class="grid-container">
+							<div class="grid-x grid-padding-x">
+								<?php foreach($detected as $item): ?>
+									<div class="large-2 cell">
+										<img src="<?= $representation . $item ?>" 
+											 alt="<?= pathinfo($item)['filename'] ?>" 
+											 data-filter="<?= $filter . $item ?>">
+									</div>
+								<?php endforeach; ?>
+							</div>
+						</div>
+					</div>
+					<div class="tabs-panel" id="hidden">
+						<div class="grid-container">
+							<div class="grid-x grid-padding-x">
+								<?php foreach($hidden as $item): ?>
+									<div class="large-2 cell">
+										<img src="<?= $representation . $item ?>" 
+											 alt="<?= pathinfo($item)['filename'] ?>" 
+											 data-filter="<?= $filter . $item ?>">
+									</div>
+								<?php endforeach; ?>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+
 
 	<script src="js/modules/jquery.min.js"></script>
 	<script src="js/modules/what-input.min.js"></script>
