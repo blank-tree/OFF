@@ -1,6 +1,18 @@
 // Settings
 let minConfidence = 0.5
+const debug = true;
 
+// Filter
+$('.filter-element').click(function(e) {
+	e.preventDefault();
+	$('.filter-element-selected').removeClass('filter-element-selected');
+	$('#current-filter').removeAttr('id');
+	$(this).addClass('filter-element-selected');
+	$(this).next('.filter-img').attr('id', 'current-filter')
+});
+
+
+// Webcam
 
 async function onPlay() {
 	const videoEl = $('#inputvideo').get(0);
@@ -26,9 +38,12 @@ async function onPlay() {
 
 		let c = document.getElementById("overlay");
 		let ctx = c.getContext("2d");
-		ctx.rect(...box);
-		ctx.stroke();
-
+		let currentFilter = document.getElementById('current-filter');
+		ctx.drawImage(currentFilter, ...box);
+		if (debug) {
+			ctx.rect(...box);
+			ctx.stroke();
+		}
 	} else {
 		const canvas = $('#overlay').get(0);
 		const dims = faceapi.matchDimensions(canvas, videoEl, true);
@@ -120,19 +135,3 @@ $(function() {
 	});
 
 });
-
-
-// Filter
-
-let currentFilter = $('.filter-element-selected').data('filter');
-console.log(currentFilter);
-
-$('.filter-element').click(function(e) {
-	e.preventDefault();
-
-	$('.filter-element-selected').removeClass('filter-element-selected');
-	$(this).addClass('filter-element-selected');
-	currentFilter = $(this).data('filter');
-	console.log(currentFilter);
-
-})

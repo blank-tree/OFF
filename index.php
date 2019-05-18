@@ -64,11 +64,12 @@
 
 				$representation = 'static/img/representation/';
 				$filter = 'static/img/filter/';
+				$filterFileExtension = '.png';
 				$cleaner = array('.', '..', '.gitkeep', '.DS_Store');
 
-				$recognized = array_diff(scandir($representation . 'recognized/', 1), $cleaner);
-				$detected = array_diff(scandir($representation . 'detected/', 1), $cleaner);
-				$hidden = array_diff(scandir($representation . 'hidden/', 1), $cleaner);
+				$recognized = array_diff(scandir($representation . 'recognized/', 0), $cleaner);
+				$detected = array_diff(scandir($representation . 'detected/', 0), $cleaner);
+				$hidden = array_diff(scandir($representation . 'hidden/', 0), $cleaner);
 
 				?>
 
@@ -81,10 +82,14 @@
 								foreach($recognized as $item): ?>
 									<div class="large-2 cell">
 										<img src="<?= $representation . 'recognized/' . $item ?>"
-											 alt="<?= pathinfo($item)['filename'] ?>" 
-											 class="filter-element <?php if($first) {echo 'filter-element-selected'; $first = false; }?>"
-											 data-filter="<?= $filter . 'recognized/' . $item ?>">
+										alt="<?= pathinfo($item)['filename'] ?>" 
+										class="filter-element <?php if($first) {echo 'filter-element-selected';}?>">
+										<img src="<?= $filter . 'recognized/' . pathinfo($item)['filename'] . $filterFileExtension ?>"
+										alt="<?= pathinfo($item)['filename'] ?>" 
+										class="filter-img"
+										id="<?php if($first) {echo 'current-filter'; } ?>">
 									</div>
+									<?php if($first) {$first = false;} ?>
 								<?php endforeach; ?>
 							</div>
 						</div>
@@ -94,10 +99,12 @@
 							<div class="grid-x grid-padding-x grid-padding-y">
 								<?php foreach($detected as $item): ?>
 									<div class="large-2 cell">
-										<img src="<?= $representation . 'detected/' . $item ?>" 
+										<img src="<?= $representation . 'detected/' . $item ?>"
 										alt="<?= pathinfo($item)['filename'] ?>" 
-										class="filter-element"
-										data-filter="<?= $filter . 'detected/' . $item ?>">
+										class="filter-element">
+										<img src="<?= $filter . 'detected/' . pathinfo($item)['filename'] . $filterFileExtension ?>"
+										alt="<?= pathinfo($item)['filename'] ?>" 
+										class="filter-img" >
 									</div>
 								<?php endforeach; ?>
 							</div>
@@ -108,10 +115,12 @@
 							<div class="grid-x grid-padding-x grid-padding-y">
 								<?php foreach($hidden as $item): ?>
 									<div class="large-2 cell">
-										<img src="<?= $representation . 'hidden/' . $item ?>" 
+										<img src="<?= $representation . 'hidden/' . $item ?>"
 										alt="<?= pathinfo($item)['filename'] ?>" 
-										class="filter-element"
-										data-filter="<?= $filter . 'hidden/' . $item ?>">
+										class="filter-element">
+										<img src="<?= $filter . 'hidden/' . pathinfo($item)['filename'] . $filterFileExtension ?>"
+										alt="<?= pathinfo($item)['filename'] ?>" 
+										class="filter-img" >
 									</div>
 								<?php endforeach; ?>
 							</div>
