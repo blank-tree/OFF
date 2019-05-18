@@ -40,20 +40,13 @@
 		</div>
 	</div>
 
+	
+
+
+
 	<div class="grid-container" id="filter-selection">
 		<div class="grid-x grid-padding-x">
 			<div class="large-12 cell">
-
-				<?php
-
-				$representation = '/static/representation/';
-				$filter = '/static/filter/';
-
-				$recognized = scandir($representation . 'recognized', 1);
-				$detected = scandir($representation . 'detected', 1);
-				$hidden = scandir($representation . 'hidden', 1);
-
-				?>
 				
 				<ul class="tabs" data-tabs id="off-tabs">
 					<li class="tabs-title is-active">
@@ -67,15 +60,30 @@
 					</li>
 				</ul>
 
+				<?php
+
+				$representation = 'static/img/representation/';
+				$filter = 'static/img/filter/';
+				$cleaner = array('.', '..', '.gitkeep', '.DS_Store');
+
+				$recognized = array_diff(scandir($representation . 'recognized/', 1), $cleaner);
+				$detected = array_diff(scandir($representation . 'detected/', 1), $cleaner);
+				$hidden = array_diff(scandir($representation . 'hidden/', 1), $cleaner);
+
+				?>
+
 				<div class="tabs-content" data-tabs-content="off-tabs">
 					<div class="tabs-panel is-active" id="recognized">
 						<div class="grid-container">
-							<div class="grid-x grid-padding-x">
-								<?php foreach($recognized as $item): ?>
+							<div class="grid-x grid-padding-x grid-padding-y">
+								<?php 
+								$first = true;
+								foreach($recognized as $item): ?>
 									<div class="large-2 cell">
-										<img src="<?= $representation . $item ?>" 
+										<img src="<?= $representation . 'recognized/' . $item ?>"
 											 alt="<?= pathinfo($item)['filename'] ?>" 
-											 data-filter="<?= $filter . $item ?>">
+											 class="filter-element <?php if($first) {echo 'filter-element-selected'; $first = false; }?>"
+											 data-filter="<?= $filter . 'recognized/' . $item ?>">
 									</div>
 								<?php endforeach; ?>
 							</div>
@@ -83,12 +91,13 @@
 					</div>
 					<div class="tabs-panel" id="detected">
 						<div class="grid-container">
-							<div class="grid-x grid-padding-x">
+							<div class="grid-x grid-padding-x grid-padding-y">
 								<?php foreach($detected as $item): ?>
 									<div class="large-2 cell">
-										<img src="<?= $representation . $item ?>" 
-											 alt="<?= pathinfo($item)['filename'] ?>" 
-											 data-filter="<?= $filter . $item ?>">
+										<img src="<?= $representation . 'detected/' . $item ?>" 
+										alt="<?= pathinfo($item)['filename'] ?>" 
+										class="filter-element"
+										data-filter="<?= $filter . 'detected/' . $item ?>">
 									</div>
 								<?php endforeach; ?>
 							</div>
@@ -96,12 +105,13 @@
 					</div>
 					<div class="tabs-panel" id="hidden">
 						<div class="grid-container">
-							<div class="grid-x grid-padding-x">
+							<div class="grid-x grid-padding-x grid-padding-y">
 								<?php foreach($hidden as $item): ?>
 									<div class="large-2 cell">
-										<img src="<?= $representation . $item ?>" 
-											 alt="<?= pathinfo($item)['filename'] ?>" 
-											 data-filter="<?= $filter . $item ?>">
+										<img src="<?= $representation . 'hidden/' . $item ?>" 
+										alt="<?= pathinfo($item)['filename'] ?>" 
+										class="filter-element"
+										data-filter="<?= $filter . 'hidden/' . $item ?>">
 									</div>
 								<?php endforeach; ?>
 							</div>
