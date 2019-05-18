@@ -1,13 +1,24 @@
+
+// Webcam
+
 #cam {
 	position: relative;
 	width: 500px;
 	height: 500px;
 }
 
-
-
 #overlay, .overlay {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+
+// Filter
+.filter-element {
+	opacity: 0.5;
+
+	&.filter-element-selected {
+		opacity: 1;
+	}
 }

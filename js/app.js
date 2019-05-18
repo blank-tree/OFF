@@ -120,3 +120,19 @@ $(function() {
 	});
 
 });
+
+
+// Filter
+
+let currentFilter = $('.filter-element-selected').data('filter');
+console.log(currentFilter);
+
+$('.filter-element').click(function(e) {
+	e.preventDefault();
+
+	$('.filter-element-selected').removeClass('filter-element-selected');
+	$(this).addClass('filter-element-selected');
+	currentFilter = $(this).data('filter');
+	console.log(currentFilter);
+
+})
