@@ -132,13 +132,9 @@
 
 	*/ ?>
 
-	<div id="off-menu">
-		<ul>
-			<li class="active-menu"><a href="/">OFF–Trial</a></li>
-			<li><a href="/archiv">Archiv</a></li>
-			<li><a href="">Info</a></li>
-		</ul>
-	</div>
+	<?php
+	require_once('elements/header.php');
+	?>
 
 	<div id="main-container">
 
@@ -149,14 +145,16 @@
 					<video onloadedmetadata="onPlay()" id="inputvideo" autoplay muted></video>
 					<canvas id="overlay"></canvas>
 				</div>
-				<div id="buttons">
-					<button type="button" class="button large hollow" id="capture">Save Picture</button>
-					<button type="button" class="button large hollow" style="display: none;" id="capture-cancel">Cancel</button>
-					<button type="button" class="button large hollow" style="display: none;" id="upload">Upload</button>
-				</div>
-				<div id="warning">
-					<p>Durch Bestätigung des «Upload» Buttons, erklären Sie sich damit einverstanden, Ihr Foto mit dem von Ihnen gewählten Filter, auf offfffffffffff.xyz für alle einsehbar online zu stellen.</p>
-				</div>
+				<div class="grid-x">
+					<div id="buttons" class="cell small-4">
+						<button type="button" class="button expanded hollow" id="capture">Save Picture</button>
+						<button type="button" class="button expanded hollow" style="display: none;" id="capture-cancel">Cancel</button>
+						<button type="button" class="button expanded hollow" style="display: none;" id="upload">Upload</button>
+					</div>
+					<div id="warning" class="cell small-8">
+						<p>Durch Bestätigung des «Upload» Buttons, erklären Sie sich damit einverstanden, Ihr Foto mit dem von Ihnen gewählten Filter, auf offfffffffffff.xyz für alle einsehbar online zu stellen.</p>
+					</div>
+				</div>				
 			</div>
 
 			<div id="off-filters" class="cell small-6">
@@ -195,7 +193,9 @@
 									<div class="large-2 cell">
 										<img src="<?= $representation . 'recognized/' . $item ?>"
 										alt="<?= pathinfo($item)['filename'] ?>" 
-										class="filter-element <?php if($first) {echo 'filter-element-selected';}?>">
+										class="filter-element"
+										id="<?php if($first) {echo 'filter-element-selected';}?>">
+										<p><?= pathinfo($item)['filename'] ?></p>
 										<img src="<?= $filter . 'recognized/' . pathinfo($item)['filename'] . $filterFileExtension ?>"
 										alt="<?= pathinfo($item)['filename'] ?>" 
 										class="filter-img"

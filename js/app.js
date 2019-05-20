@@ -5,9 +5,9 @@ const debug = true;
 // Filter
 $('.filter-element').click(function(e) {
 	e.preventDefault();
-	$('.filter-element-selected').removeClass('filter-element-selected');
+	$('#filter-element-selected').removeAttr('id');
 	$('#current-filter').removeAttr('id');
-	$(this).addClass('filter-element-selected');
+	$(this).attr('id', 'filter-element-selected');
 	$(this).next('.filter-img').attr('id', 'current-filter')
 });
 
