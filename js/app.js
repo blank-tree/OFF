@@ -1,6 +1,6 @@
 // Settings
 let minConfidence = 0.5
-const debug = true;
+const debug = false;
 
 // Filter
 $('.filter-element').click(function(e) {
@@ -26,6 +26,9 @@ async function onPlay() {
 
 	if (result) {
 		const canvas = $('#overlay').get(0);
+
+		// let dims = faceapi.matchDimensions(canvas, displaySize);
+
 		const dims = faceapi.matchDimensions(canvas, videoEl, true);
 		// faceapi.draw.drawDetections(canvas, faceapi.resizeResults(result, dims));
 
@@ -44,6 +47,10 @@ async function onPlay() {
 			ctx.rect(...box);
 			ctx.stroke();
 		}
+
+		$('#overlay').height($('#inputvideo').height());
+		$('#overlay').width($('#inputvideo').width());
+
 	} else {
 		const canvas = $('#overlay').get(0);
 		const dims = faceapi.matchDimensions(canvas, videoEl, true);
@@ -112,7 +119,9 @@ $(function() {
 
 	$buttonCapture.click(function(e) {
 		e.preventDefault();
-		console.log('capture!');
+		if (debug) {
+			console.log('capture!');
+		}
 		$buttonCapture.hide();
 		$buttonCancel.show();
 		$buttonUpload.show();
@@ -121,7 +130,9 @@ $(function() {
 
 	$buttonCancel.click(function(e) {
 		e.preventDefault();
-		console.log('cancel capture');
+		if (debug) {
+			console.log('cancel capture');
+		}
 		$buttonCapture.show();
 		$buttonCancel.hide();
 		$buttonUpload.hide();
@@ -130,7 +141,9 @@ $(function() {
 
 	$buttonUpload.click(function(e) {
 		e.preventDefault();
-		console.log('upload picture');
+		if (debug) {
+			console.log('upload picture');
+		}
 		uploadImage();
 	});
 

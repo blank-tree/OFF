@@ -9,129 +9,6 @@
 </head>
 <body>
 
-	<?php /*
-
-	<div class="grid-container">
-		<div class="grid-x grid-padding-x">
-			<div class="large-12 cell">
-				<h1>ObservationFailureFilter</h1>
-			</div>
-		</div>
-	</div>
-
-	<div class="grid-container">
-		<div class="grid-x grid-padding-x">
-			<div class="large-12 cell">
-				<div id="cam">
-					<video onloadedmetadata="onPlay()" id="inputvideo" autoplay muted></video>
-					<canvas id="overlay"></canvas>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-
-	<div class="grid-container">
-		<div class="grid-x grid-padding-x">
-			<div class="large-12 cell">
-				<button type="button" class="button large hollow" id="capture">Save Picture</button>
-				<button type="button" class="button large hollow" style="display: none;" id="capture-cancel">Cancel</button>
-				<button type="button" class="button large hollow" style="display: none;" id="upload">Upload</button>
-			</div>
-		</div>
-	</div>
-
-	<div class="grid-container" id="filter-selection">
-		<div class="grid-x grid-padding-x">
-			<div class="large-12 cell">
-				
-				<ul class="tabs" data-tabs id="off-tabs">
-					<li class="tabs-title is-active">
-						<a href="#recognized" aria-selected="true">Person Recognized</a>
-					</li>
-					<li class="tabs-title">
-						<a href="#detected" aria-selected="true">Person Detected</a>
-					</li>
-					<li class="tabs-title">
-						<a href="#hidden" aria-selected="true">Person Hidden</a>
-					</li>
-				</ul>
-
-				<?php
-
-				$representation = 'static/img/representation/';
-				$filter = 'static/img/filter/';
-				$filterFileExtension = '.png';
-				$cleaner = array('.', '..', '.gitkeep', '.DS_Store');
-
-				$recognized = array_diff(scandir($representation . 'recognized/', 0), $cleaner);
-				$detected = array_diff(scandir($representation . 'detected/', 0), $cleaner);
-				$hidden = array_diff(scandir($representation . 'hidden/', 0), $cleaner);
-
-				?>
-
-				<div class="tabs-content" data-tabs-content="off-tabs">
-					<div class="tabs-panel is-active" id="recognized">
-						<div class="grid-container">
-							<div class="grid-x grid-padding-x grid-padding-y">
-								<?php 
-								$first = true;
-								foreach($recognized as $item): ?>
-									<div class="large-2 cell">
-										<img src="<?= $representation . 'recognized/' . $item ?>"
-										alt="<?= pathinfo($item)['filename'] ?>" 
-										class="filter-element <?php if($first) {echo 'filter-element-selected';}?>">
-										<img src="<?= $filter . 'recognized/' . pathinfo($item)['filename'] . $filterFileExtension ?>"
-										alt="<?= pathinfo($item)['filename'] ?>" 
-										class="filter-img"
-										id="<?php if($first) {echo 'current-filter'; } ?>">
-									</div>
-									<?php if($first) {$first = false;} ?>
-								<?php endforeach; ?>
-							</div>
-						</div>
-					</div>
-					<div class="tabs-panel" id="detected">
-						<div class="grid-container">
-							<div class="grid-x grid-padding-x grid-padding-y">
-								<?php foreach($detected as $item): ?>
-									<div class="large-2 cell">
-										<img src="<?= $representation . 'detected/' . $item ?>"
-										alt="<?= pathinfo($item)['filename'] ?>" 
-										class="filter-element">
-										<img src="<?= $filter . 'detected/' . pathinfo($item)['filename'] . $filterFileExtension ?>"
-										alt="<?= pathinfo($item)['filename'] ?>" 
-										class="filter-img" >
-									</div>
-								<?php endforeach; ?>
-							</div>
-						</div>
-					</div>
-					<div class="tabs-panel" id="hidden">
-						<div class="grid-container">
-							<div class="grid-x grid-padding-x grid-padding-y">
-								<?php foreach($hidden as $item): ?>
-									<div class="large-2 cell">
-										<img src="<?= $representation . 'hidden/' . $item ?>"
-										alt="<?= pathinfo($item)['filename'] ?>" 
-										class="filter-element">
-										<img src="<?= $filter . 'hidden/' . pathinfo($item)['filename'] . $filterFileExtension ?>"
-										alt="<?= pathinfo($item)['filename'] ?>" 
-										class="filter-img" >
-									</div>
-								<?php endforeach; ?>
-							</div>
-						</div>
-					</div>
-				</div>
-
-
-			</div>
-		</div>
-	</div>
-
-	*/ ?>
-
 	<?php
 	require_once('elements/header.php');
 	?>
@@ -195,11 +72,11 @@
 										alt="<?= pathinfo($item)['filename'] ?>" 
 										class="filter-element"
 										id="<?php if($first) {echo 'filter-element-selected';}?>">
-										<p><?= pathinfo($item)['filename'] ?></p>
 										<img src="<?= $filter . 'recognized/' . pathinfo($item)['filename'] . $filterFileExtension ?>"
 										alt="<?= pathinfo($item)['filename'] ?>" 
 										class="filter-img"
 										id="<?php if($first) {echo 'current-filter'; } ?>">
+										<p><?= pathinfo($item)['filename'] ?></p>
 									</div>
 									<?php if($first) {$first = false;} ?>
 								<?php endforeach; ?>
@@ -244,8 +121,6 @@
 		</div>
 
 	</div>
-
-
 
 
 	<script src="js/modules/jquery.min.js"></script>
