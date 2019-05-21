@@ -33,10 +33,10 @@ async function onPlay() {
 		// faceapi.draw.drawDetections(canvas, faceapi.resizeResults(result, dims));
 
 		let box = [
-			result["_box"]["_x"],
-			result["_box"]["_y"],
-			result["_box"]["_width"],
-			result["_box"]["_height"]
+		result["_box"]["_x"],
+		result["_box"]["_y"],
+		result["_box"]["_width"],
+		result["_box"]["_height"]
 		];
 
 		let c = document.getElementById("overlay");
@@ -90,13 +90,6 @@ function captureImage() {
 	let videoEl = document.getElementById("inputvideo");
 
 	videoEl.pause();
-
-	// captureOverlay.getContext('2d')
-	// 	.drawImage(videoEl, 0, 0, captureOverlay.width, captureOverlay.height);
-
-	// let img = document.createElement("img");
-	// img.src = captureOverlay.toDataURL();
-	// captureOverlay.prepend(img);
 }
 
 function clearImage() {
@@ -105,7 +98,26 @@ function clearImage() {
 }
 
 function uploadImage() {
-
+	let uploadCanvas = document.createElement('canvas');
+	uploadCanvas.width = $('#inputvideo').width();
+	uploadCanvas.height = $('#inputvideo').height();
+	let uploadCtx = uploadCanvas.getContext('2d');
+	let videoEl = document.getElementById("inputvideo");
+	let overlayEl = document.getElementById("overlay");
+	uploadCtx.drawImage(videoEl, 0, 0, uploadCanvas.width, uploadCanvas.height);
+	uploadCtx.drawImage(overlayEl, 0, 0, uploadCanvas.width, uploadCanvas.height);
+	let dataURL = uploadCanvas.toDataURL('image/jpeg');
+	
+	
+	$.ajax({
+		type: "POST",
+		url: "upload.php",
+		data: { 
+			img: dataURL
+		}
+	}).done(function(o) {
+		console.log('saved'); 
+	});
 }
 
 let $buttonCapture = $('#capture');

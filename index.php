@@ -31,7 +31,7 @@
 					<div id="warning" class="cell small-8">
 						<p>Durch Bestätigung des «Upload» Buttons, erklären Sie sich damit einverstanden, Ihr Foto mit dem von Ihnen gewählten Filter, auf offfffffffffff.xyz für alle einsehbar online zu stellen.</p>
 					</div>
-				</div>				
+				</div>
 			</div>
 
 			<div id="off-filters" class="cell small-6">

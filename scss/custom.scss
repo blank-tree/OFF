@@ -143,6 +143,10 @@ $global-padding: 4rem;
 				margin-right: 8rem;
 				text-transform: uppercase;
 				opacity: 0.5;
+
+				&:focus {
+					background: none;
+				}
 			}
 		}
 	}
