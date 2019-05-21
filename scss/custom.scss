@@ -114,10 +114,13 @@ $global-padding: 4rem;
 
 #off-filters {
 
+	// margin-right: 1px;
+
 	#off-tabs {
 		border: none;
-		margin-left: -1px;
-		margin-right: -1px;
+		// margin-left: -1px;
+		// margin-right: -1px;
+		// padding-right: 1px;
 
 		border-bottom: 1px solid black;
 
@@ -146,6 +149,8 @@ $global-padding: 4rem;
 
 	.tabs-content {
 		border: none;
+		// margin-left: -1px;
+		// margin-right: -1px;
 
 		.grid-container {
 			padding-left: 0;
@@ -169,4 +174,12 @@ $global-padding: 4rem;
 		// margin-right: -1rem;
 	}
 
+}
+
+.off-icon {
+	display: inline;
+	height: 100%;
+	width: 0.75rem;
+	margin-right: 0.5rem;
+	margin-top: -0.2rem;
 }

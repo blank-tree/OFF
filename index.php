@@ -37,13 +37,13 @@
 			<div id="off-filters" class="cell small-6">
 				<ul class="tabs" data-tabs id="off-tabs">
 					<li class="tabs-title is-active">
-						<a href="#recognized" aria-selected="true">Person Recognized</a>
+						<a href="#recognized" aria-selected="true"><img src="static/img/recognized.svg" alt="Recognized" class="off-icon">Person Recognized</a>
 					</li>
 					<li class="tabs-title">
-						<a href="#detected" aria-selected="true">Person Detected</a>
+						<a href="#detected" aria-selected="true"><img src="static/img/detected.svg" alt="Detected" class="off-icon">Person Detected</a>
 					</li>
 					<li class="tabs-title">
-						<a href="#hidden" aria-selected="true">Person Hidden</a>
+						<a href="#hidden" aria-selected="true"><img src="static/img/hidden.svg" alt="Hidden" class="off-icon">Person Hidden</a>
 					</li>
 				</ul>
 
@@ -76,7 +76,7 @@
 										alt="<?= pathinfo($item)['filename'] ?>" 
 										class="filter-img"
 										id="<?php if($first) {echo 'current-filter'; } ?>">
-										<p><?= pathinfo($item)['filename'] ?></p>
+										<p><img src="static/img/recognized.svg" alt="Recognized" class="off-icon"><?= pathinfo($item)['filename'] ?></p>
 									</div>
 									<?php if($first) {$first = false;} ?>
 								<?php endforeach; ?>
@@ -94,6 +94,7 @@
 										<img src="<?= $filter . 'detected/' . pathinfo($item)['filename'] . $filterFileExtension ?>"
 										alt="<?= pathinfo($item)['filename'] ?>" 
 										class="filter-img" >
+										<p><img src="static/img/detected.svg" alt="Detected" class="off-icon"><?= pathinfo($item)['filename'] ?></p>
 									</div>
 								<?php endforeach; ?>
 							</div>
@@ -110,6 +111,7 @@
 										<img src="<?= $filter . 'hidden/' . pathinfo($item)['filename'] . $filterFileExtension ?>"
 										alt="<?= pathinfo($item)['filename'] ?>" 
 										class="filter-img" >
+										<p><img src="static/img/hidden.svg" alt="Hidden" class="off-icon"><?= pathinfo($item)['filename'] ?></p>
 									</div>
 								<?php endforeach; ?>
 							</div>
