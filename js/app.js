@@ -2,17 +2,129 @@
 let minConfidence = 0.5
 const debug = false;
 
-// Filter
-$('.filter-element').click(function(e) {
-	e.preventDefault();
-	$('#filter-element-selected').removeAttr('id');
-	$('#current-filter').removeAttr('id');
-	$(this).attr('id', 'filter-element-selected');
-	$(this).next('.filter-img').attr('id', 'current-filter')
-});
 
 
-// Webcam
+$(document).foundation();
+
+
+if (window.location.pathname === "/") {
+	
+
+	// Filter
+	$('.filter-element').click(function(e) {
+		e.preventDefault();
+		$('#filter-element-selected').removeAttr('id');
+		$('#current-filter').removeAttr('id');
+		$(this).attr('id', 'filter-element-selected');
+		$(this).next('.filter-img').attr('id', 'current-filter')
+	});
+
+
+	// Webcam
+	async function run() {
+		await changeFaceDetector();
+
+		const stream = await navigator.mediaDevices.getUserMedia({ video: {} });
+		const videoEl = $('#inputvideo').get(0);
+		videoEl.srcObject = stream;
+	}
+
+	async function changeFaceDetector() {
+		await faceapi.nets.ssdMobilenetv1.loadFromUri('/models');
+		if (!isFaceDetectionModelLoaded()) {
+			await getCurrentFaceDetectionNet().load('/');
+		}
+	}
+
+	function getFaceDetectorOptions() {
+		return new faceapi.SsdMobilenetv1Options({ minConfidence });
+	}
+
+	function getCurrentFaceDetectionNet() {
+		return faceapi.nets.ssdMobilenetv1;
+	}
+
+	function isFaceDetectionModelLoaded() {
+		return !!getCurrentFaceDetectionNet().params
+	}
+
+	function captureImage() {
+		let videoEl = document.getElementById("inputvideo");
+
+		videoEl.pause();
+	}
+
+	function clearImage() {
+		let videoEl = document.getElementById("inputvideo");
+		videoEl.play();
+	}
+
+	function uploadImage() {
+		let uploadCanvas = document.createElement('canvas');
+		uploadCanvas.width = $('#inputvideo').width();
+		uploadCanvas.height = $('#inputvideo').height();
+		let uploadCtx = uploadCanvas.getContext('2d');
+		let videoEl = document.getElementById("inputvideo");
+		let overlayEl = document.getElementById("overlay");
+		uploadCtx.drawImage(videoEl, 0, 0, uploadCanvas.width, uploadCanvas.height);
+		uploadCtx.drawImage(overlayEl, 0, 0, uploadCanvas.width, uploadCanvas.height);
+		let dataURL = uploadCanvas.toDataURL('image/jpeg');
+		
+		
+		$.ajax({
+			type: "POST",
+			url: "upload.php",
+			data: { 
+				img: dataURL
+			}
+		}).done(function(o) {
+			clearImage();
+			$buttonCapture.show();
+			$buttonCancel.hide();
+			$buttonUpload.hide();
+		});
+	}
+
+	let $buttonCapture = $('#capture');
+	let $buttonCancel = $('#capture-cancel');
+	let $buttonUpload = $('#upload');
+
+	$(function() {		
+		run();
+
+		$buttonCapture.click(function(e) {
+			e.preventDefault();
+			if (debug) {
+				console.log('capture!');
+			}
+			$buttonCapture.hide();
+			$buttonCancel.show();
+			$buttonUpload.show();
+			captureImage();
+		});
+
+		$buttonCancel.click(function(e) {
+			e.preventDefault();
+			if (debug) {
+				console.log('cancel capture');
+			}
+			$buttonCapture.show();
+			$buttonCancel.hide();
+			$buttonUpload.hide();
+			clearImage();
+		});
+
+		$buttonUpload.click(function(e) {
+			e.preventDefault();
+			if (debug) {
+				console.log('upload picture');
+			}
+			uploadImage();
+		});
+		
+
+	});
+}
 
 async function onPlay() {
 	const videoEl = $('#inputvideo').get(0);
@@ -58,105 +170,3 @@ async function onPlay() {
 
 	setTimeout(() => onPlay());
 }
-
-async function run() {
-	await changeFaceDetector();
-
-	const stream = await navigator.mediaDevices.getUserMedia({ video: {} });
-	const videoEl = $('#inputvideo').get(0);
-	videoEl.srcObject = stream;
-}
-
-async function changeFaceDetector() {
-	await faceapi.nets.ssdMobilenetv1.loadFromUri('/models');
-	if (!isFaceDetectionModelLoaded()) {
-		await getCurrentFaceDetectionNet().load('/');
-	}
-}
-
-function getFaceDetectorOptions() {
-	return new faceapi.SsdMobilenetv1Options({ minConfidence });
-}
-
-function getCurrentFaceDetectionNet() {
-	return faceapi.nets.ssdMobilenetv1;
-}
-
-function isFaceDetectionModelLoaded() {
-	return !!getCurrentFaceDetectionNet().params
-}
-
-function captureImage() {
-	let videoEl = document.getElementById("inputvideo");
-
-	videoEl.pause();
-}
-
-function clearImage() {
-	let videoEl = document.getElementById("inputvideo");
-	videoEl.play();
-}
-
-function uploadImage() {
-	let uploadCanvas = document.createElement('canvas');
-	uploadCanvas.width = $('#inputvideo').width();
-	uploadCanvas.height = $('#inputvideo').height();
-	let uploadCtx = uploadCanvas.getContext('2d');
-	let videoEl = document.getElementById("inputvideo");
-	let overlayEl = document.getElementById("overlay");
-	uploadCtx.drawImage(videoEl, 0, 0, uploadCanvas.width, uploadCanvas.height);
-	uploadCtx.drawImage(overlayEl, 0, 0, uploadCanvas.width, uploadCanvas.height);
-	let dataURL = uploadCanvas.toDataURL('image/jpeg');
-	
-	
-	$.ajax({
-		type: "POST",
-		url: "upload.php",
-		data: { 
-			img: dataURL
-		}
-	}).done(function(o) {
-		console.log('saved'); 
-	});
-}
-
-let $buttonCapture = $('#capture');
-let $buttonCancel = $('#capture-cancel');
-let $buttonUpload = $('#upload');
-
-
-$(document).foundation();
-$(function() {
-	run();
-
-	$buttonCapture.click(function(e) {
-		e.preventDefault();
-		if (debug) {
-			console.log('capture!');
-		}
-		$buttonCapture.hide();
-		$buttonCancel.show();
-		$buttonUpload.show();
-		captureImage();
-	});
-
-	$buttonCancel.click(function(e) {
-		e.preventDefault();
-		if (debug) {
-			console.log('cancel capture');
-		}
-		$buttonCapture.show();
-		$buttonCancel.hide();
-		$buttonUpload.hide();
-		clearImage();
-	});
-
-	$buttonUpload.click(function(e) {
-		e.preventDefault();
-		if (debug) {
-			console.log('upload picture');
-		}
-		uploadImage();
-	});
-
-});

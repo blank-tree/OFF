@@ -34,11 +34,14 @@ $global-padding: 4rem;
 }
 
 
-#main-container {
+#main-container, #main-container-archive {
 	width: 100%;
-	
+}
 
-	// position: relative;
+#main-container-archive {
+	#main-wrapper {
+		padding: 1rem 3rem 0 3rem;
+	}	
 }
 
 #main-wrapper {

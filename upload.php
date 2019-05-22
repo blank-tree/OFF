@@ -12,7 +12,6 @@ $file = UPLOAD_DIR . uniqid() . '.jpeg';
 $success = file_put_contents($file, $data);
 
 if ($success) {
-	// https://www.w3schools.com/php/php_mysql_prepared_statements.asp
 
     // Create connection
 	$conn = new mysqli($DB_URL, $DB_USER, $DB_PW, $DB_NAME);
