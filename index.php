@@ -17,7 +17,7 @@
 
 		<div id="main-wrapper" class="grid-x">
 
-			<div id="off-cam" class="cell small-6">
+			<div id="off-cam" class="cell small-7">
 				<div id="cam">
 					<video onloadedmetadata="onPlay()" id="inputvideo" autoplay muted></video>
 					<canvas id="overlay"></canvas>
@@ -34,7 +34,7 @@
 				</div>
 			</div>
 
-			<div id="off-filters" class="cell small-6">
+			<div id="off-filters" class="cell small-5">
 				<ul class="tabs" data-tabs id="off-tabs">
 					<li class="tabs-title is-active">
 						<a href="#recognized" aria-selected="true"><img src="static/img/recognized.svg" alt="Recognized" class="off-icon">Person Recognized</a>

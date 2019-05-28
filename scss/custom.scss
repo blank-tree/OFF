@@ -95,6 +95,7 @@ $global-padding: 4rem;
 
 	#warning {
 		padding-left: 1rem;
+		font-size: 14px;
 	}
 }
 
@@ -143,7 +144,7 @@ $global-padding: 4rem;
 			a {
 				// padding: 0 8rem 0 0;
 				padding: 0;
-				margin-right: 8rem;
+				margin-right: 4rem;
 				text-transform: uppercase;
 				opacity: 0.5;
 
@@ -160,11 +161,12 @@ $global-padding: 4rem;
 		// margin-right: -1px;
 
 		.grid-container {
-			padding-left: 0;
-			padding-right: 0;
+			padding-left: 0.4375rem;
+			padding-right: 0.4375rem;
 
 			.cell {
-				padding-bottom: 0;
+				// padding-bottom: 0;
+				padding: 0.5rem 0.5rem 0 0.5rem;
 			}
 
 
