@@ -1,6 +1,8 @@
 // Settings
 let minConfidence = 0.5
 const debug = false;
+const uploadConfirmationDuration = 2000;
+const uploadConfirmationFadeDuration = 750;
 
 
 
@@ -48,6 +50,10 @@ if (window.location.pathname === "/") {
 		return !!getCurrentFaceDetectionNet().params
 	}
 
+
+	// OFF
+	let uploadBlocked = false;
+
 	function captureImage() {
 		let videoEl = document.getElementById("inputvideo");
 
@@ -82,25 +88,44 @@ if (window.location.pathname === "/") {
 			$buttonCapture.show();
 			$buttonCancel.hide();
 			$buttonUpload.hide();
+			uploadConfirmation();
 		});
+	}
+
+	function uploadConfirmation() {
+		uploadBlocked = true;
+		$uploadConfirmation.fadeTo(
+			uploadConfirmationFadeDuration,
+			1, function() {
+				setTimeout(function() {
+					$uploadConfirmation.fadeTo(
+						uploadConfirmationFadeDuration,
+						0, function() {
+							uploadBlocked = false;
+						})
+				}, uploadConfirmationDuration);
+			});
 	}
 
 	let $buttonCapture = $('#capture');
 	let $buttonCancel = $('#capture-cancel');
 	let $buttonUpload = $('#upload');
+	let $uploadConfirmation = $('#upload-confirmation');
 
 	$(function() {		
 		run();
 
 		$buttonCapture.click(function(e) {
 			e.preventDefault();
-			if (debug) {
-				console.log('capture!');
+			if (!uploadBlocked) {
+				if (debug) {
+					console.log('capture!');
+				}
+				$buttonCapture.hide();
+				$buttonCancel.show();
+				$buttonUpload.show();
+				captureImage();
 			}
-			$buttonCapture.hide();
-			$buttonCancel.show();
-			$buttonUpload.show();
-			captureImage();
 		});
 
 		$buttonCancel.click(function(e) {

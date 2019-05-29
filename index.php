@@ -21,6 +21,9 @@
 				<div id="cam">
 					<video onloadedmetadata="onPlay()" id="inputvideo" autoplay muted></video>
 					<canvas id="overlay"></canvas>
+					<div id="upload-confirmation">
+						<p>Dein Bild ist nun im Archiv einsehbar.</p>
+					</div>
 				</div>
 				<div class="grid-x">
 					<div id="buttons" class="cell small-4">

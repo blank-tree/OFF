@@ -87,6 +87,7 @@ $global-padding: 4rem;
 
 
 	#buttons {
+		z-index: 100;
 		padding-right: 1rem;
 		button {
 			text-transform: uppercase;
@@ -96,6 +97,25 @@ $global-padding: 4rem;
 	#warning {
 		padding-left: 1rem;
 		font-size: 14px;
+	}
+
+	#upload-confirmation {
+		height: 100%;
+		width: 100%;
+		position: absolute;
+		top: 50%;
+		left: 0;
+		text-align: center;
+		margin-top: -0.8rem;
+		opacity: 0;
+
+		p {
+			display: inline;
+			padding: 2rem 8rem;
+			background-color: white;
+		}
+
+		
 	}
 }
 
