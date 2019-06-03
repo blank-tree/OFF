@@ -20,8 +20,8 @@
 
 			<?php
 
-			if (isset($_GET['p'])) {
-				$pageno = $_GET['p'];
+			if (isset($_GET['pageno'])) {
+				$pageno = $_GET['pageno'];
 			} else {
 				$pageno = 1;
 			}
