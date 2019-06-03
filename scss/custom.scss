@@ -192,6 +192,13 @@ $global-padding: 4rem;
 
 			p {
 				margin-bottom: 0;
+				margin-top: 0.25rem;
+				font-size: 12px;
+
+				img {
+					margin-top: -0.25rem;
+					margin-right: 0.25rem;
+				}
 			}
 		}
 	}
@@ -211,4 +218,18 @@ $global-padding: 4rem;
 	width: 0.75rem;
 	margin-right: 0.5rem;
 	margin-top: -0.2rem;
+}
+
+span.upper {
+	text-transform: uppercase;
+}
+
+p.impressum {
+	margin-top: 8rem;
+}
+
+#info {
+	.off-icon {
+		margin-right: 0;
+	}
 }
