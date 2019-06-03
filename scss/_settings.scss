@@ -64,7 +64,14 @@
 
 // 0. Fonts
 // ---------
- @import url('https://fonts.googleapis.com/css?family=Oxygen+Mono');
+ @font-face {
+  font-family: "GT-America";
+  src: url("../static/fonts/GT-America-Mono-Medium.eot") format("eot"),
+     url("../static/fonts/GT-America-Mono-Medium.woff2") format("woff2"),
+     url("../static/fonts/GT-America-Mono-Medium.woff") format("woff"),
+     url("../static/fonts/GT-America-Mono-Medium.ttf") format("truetype"),
+     url("../static/fonts/GT-America-Mono-Medium.otf") format("otf");
+}
 
 // 1. Global
 // ---------
@@ -86,7 +93,7 @@ $black: #0a0a0a;
 $white: #fefefe;
 $body-background: $white;
 $body-font-color: $black;
-$body-font-family: 'Oxygen Mono', monospace; //'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+$body-font-family: 'GT-America', monospace; //'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
 $body-antialiased: true;
 $global-margin: 1rem;
 $global-padding: 1rem;
