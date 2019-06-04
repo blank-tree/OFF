@@ -1,0 +1,7 @@
+CREATE DATABASE off;
+USE off;
+CREATE TABLE offuploads (
+	id INTEGER PRIMARY KEY AUTO_INCREMENT,
+	filename VARCHAR(50) NOT NULL,
+	uploadtimestamp VARCHAR(50) NOT NULL
+);
