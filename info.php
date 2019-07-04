@@ -42,7 +42,7 @@
 						Departement Design, Studienvertiefung Visuelle Kommunikation<br>
 						Autorin: Meret Fischli, Mentor/in: Cybu Richli, Martina Brassel<br>
 						© ZHdK Visuelle Kommunikation, Zürich, Juni 2019<br>
-						Interaction/Programmierung: Fernando Obieta<br>
+						Interaction Design / Programmierung: Fernando Obieta<br>
 						Font: GT America Mono
 					</p>
 				</div>
