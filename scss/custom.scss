@@ -51,7 +51,7 @@ $global-padding: 4rem;
 	}	
 }
 
-#main-wrapper {
+#main-wrapper, .main-wrapper {
 	padding: 1rem $global-padding 0 $global-padding;
 }
 
@@ -246,8 +246,15 @@ p.impressum {
 	margin-top: 8rem;
 }
 
-#info {
+#main-container-info {
+	p {
+		line-height: 1.4;
+	}
 	.off-icon {
 		margin-right: 0;
 	}
+	.cell {
+		padding-left: 0;
+	}
+
 }
