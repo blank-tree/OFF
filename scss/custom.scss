@@ -33,8 +33,12 @@ $global-padding: 4rem;
 	}
 }
 
+#main-container-off {
+	overflow: hidden;
+}
 
-#main-container, #main-container-archive {
+
+#main-container-off, #main-container-archive {
 	width: 100%;
 }
 

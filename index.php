@@ -13,7 +13,7 @@
 	require_once('elements/header.php');
 	?>
 
-	<div id="main-container">
+	<div id="main-container-off">
 
 		<div id="main-wrapper" class="grid-x">
 
