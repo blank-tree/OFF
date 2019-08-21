@@ -72,6 +72,8 @@ if (window.location.pathname === "/") {
 		let uploadCtx = uploadCanvas.getContext('2d');
 		let videoEl = document.getElementById("inputvideo");
 		let overlayEl = document.getElementById("overlay");
+		uploadCtx.translate(uploadCanvas.width, 0);
+		uploadCtx.scale(-1, 1);
 		uploadCtx.drawImage(videoEl, 0, 0, uploadCanvas.width, uploadCanvas.height);
 		uploadCtx.drawImage(overlayEl, 0, 0, uploadCanvas.width, uploadCanvas.height);
 		let dataURL = uploadCanvas.toDataURL('image/jpeg');

@@ -45,6 +45,9 @@ $global-padding: 4rem;
 #main-container-archive {
 	#main-wrapper {
 		padding: 1rem 3rem 0 3rem;
+		p {
+			font-size: 9px;
+		}
 	}	
 }
 
@@ -77,6 +80,7 @@ $global-padding: 4rem;
 
 #cam {
 	position: relative;
+	transform: scaleX(-1);
 }
 
 #overlay, .overlay {
@@ -96,11 +100,16 @@ $global-padding: 4rem;
 		button {
 			text-transform: uppercase;
 		}
+
+		#capture-cancel, #upload {
+			width: 48%;
+			display: inline-block;
+		}
 	}
 
 	#warning {
 		padding-left: 1rem;
-		font-size: 14px;
+		font-size: 9px;
 	}
 
 	#upload-confirmation {
@@ -112,6 +121,7 @@ $global-padding: 4rem;
 		text-align: center;
 		margin-top: -0.8rem;
 		opacity: 0;
+		transform: scaleX(-1);
 
 		p {
 			display: inline;
@@ -197,7 +207,7 @@ $global-padding: 4rem;
 			p {
 				margin-bottom: 0;
 				margin-top: 0.25rem;
-				font-size: 12px;
+				font-size: 9px;
 
 				img {
 					margin-top: -0.25rem;
@@ -212,6 +222,10 @@ $global-padding: 4rem;
 		padding: 0;
 		// margin-left: -1rem;
 		// margin-right: -1rem;
+
+		.off-icon {
+			width: 9px;
+		}
 	}
 
 }
