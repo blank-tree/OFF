@@ -25,8 +25,14 @@
 			} else {
 				$pageno = 1;
 			}
+
+			if (isset($_GET['exhibition'])) {
+				$exhibition = $_GET['exhibition'];
+			} else {
+				$exhibition = $CURRENT_EXHIBITION;
+			}
 			
-			$no_of_records_per_page = 52;
+			$no_of_records_per_page = $MAX_DISPLAY;
 			$offset = ($pageno-1) * $no_of_records_per_page;
 
 			// Create connection
@@ -41,7 +47,7 @@
 			$result = mysqli_query($conn,$total_pages_sql);
 			$total_rows = mysqli_fetch_array($result)[0];
 			$total_pages = ceil($total_rows / $no_of_records_per_page);
-			$result = $conn->query("SELECT * FROM offuploads ORDER BY offuploads.uploadtimestamp DESC LIMIT $offset, $no_of_records_per_page");
+			$result = $conn->query("SELECT * FROM " . $exhibition . " ORDER BY " . $exhibition . ".uploadtimestamp DESC LIMIT $offset, $no_of_records_per_page");
 			?>
 
 			<?php while($row = $result->fetch_assoc()): ?>
@@ -52,6 +58,16 @@
 			<?php endwhile;
 			$conn->close();
 			?>
+		</div>
+
+		<div class="grid-x">
+			<div class="cell small-12">
+				<ul>
+					<li><a href="/archiv?exhibition=refresh" class="disabled">Refresh ZHdK</a></li>
+					<li><a href="/archiv?exhibition=biennale">Design Biennale</a></li>
+					<li><a href="/archiv?exhibition=diplom">Diplomausstellung</a></li>
+				</ul>
+			</div>
 		</div>
 
 		<div class="grid-x">
