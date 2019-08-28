@@ -22,7 +22,7 @@ if ($success) {
 	}
 
     // prepare and bind
-	$stmt = $conn->prepare("INSERT INTO offuploads (filename, uploadtimestamp) VALUES (?, ?)");
+	$stmt = $conn->prepare("INSERT INTO " . $CURRENT_EXHIBITION . " (filename, uploadtimestamp) VALUES (?, ?)");
 	$stmt->bind_param("ss", $file, $uploadtimestamp);
 
     // set parameters and execute

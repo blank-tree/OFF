@@ -7,8 +7,10 @@ $DB_USER = "";
 $DB_PW = "";
 $DB_NAME = "";
 
-$TABLE_DIPLOM = "";
-$TABLE_BIENNALE = "";
-$TABLE_REFRESH = "";
+$TABLE_DIPLOM = "diplom";
+$TABLE_BIENNALE = "biennale";
+$TABLE_REFRESH = "refresh";
+
+$CURRENT_EXHIBITION = $TABLE_BIENNALE;
 
 $MAX_DISPLAY = 52;
