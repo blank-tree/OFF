@@ -73,14 +73,14 @@
 		<div class="grid-x">
 			<div class="cell small-12" style="text-align: center;">
 				<ul class="pagination">
-					<li><a href=<?php echo "?exhibition=" . $exhibition . "?pageno=1" ?>>First</a></li>
+					<li><a href=<?php echo "?exhibition=" . $exhibition . "&pageno=1" ?>>First</a></li>
 					<li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
 						<a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?exhibition=" . $exhibition . "&pageno=".($pageno - 1); } ?>">Prev</a>
 					</li>
 					<li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
-						<a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?exhibition=" . $exhibition . "?pageno=".($pageno + 1); } ?>">Next</a>
+						<a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?exhibition=" . $exhibition . "&pageno=".($pageno + 1); } ?>">Next</a>
 					</li>
-					<li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
+					<li><a href="<?php echo "?exhibition=" . $exhibition . "&pageno=" . $total_pages; ?>">Last</a></li>
 				</ul>
 			</div>
 		</div>
