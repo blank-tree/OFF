@@ -31,6 +31,17 @@
 			} else {
 				$exhibition = $CURRENT_EXHIBITION;
 			}
+			?>
+
+			<div class="cell small-12" id="exhibitions">
+				<ul>
+					<?php /*<li><a href="/archiv?exhibition=refresh" class="disabled">Refresh ZHdK</a></li> */ ?>
+					<li><a href="/archiv?exhibition=biennale" class="<?= $exhibition == 'biennale' ? 'active' : '' ?>">Design Biennale</a></li>
+					<li><a href="/archiv?exhibition=diplom" class="<?= $exhibition == 'diplom' ? 'active' : '' ?>">Diplomausstellung</a></li>
+				</ul>
+			</div>
+
+			<?php
 			
 			$no_of_records_per_page = $MAX_DISPLAY;
 			$offset = ($pageno-1) * $no_of_records_per_page;
@@ -58,16 +69,6 @@
 			<?php endwhile;
 			$conn->close();
 			?>
-		</div>
-
-		<div class="grid-x">
-			<div class="cell small-12">
-				<ul>
-					<li><a href="/archiv?exhibition=refresh" class="disabled">Refresh ZHdK</a></li>
-					<li><a href="/archiv?exhibition=biennale">Design Biennale</a></li>
-					<li><a href="/archiv?exhibition=diplom">Diplomausstellung</a></li>
-				</ul>
-			</div>
 		</div>
 
 		<div class="grid-x">

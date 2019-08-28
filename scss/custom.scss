@@ -258,3 +258,33 @@ p.impressum {
 	}
 
 }
+
+#exhibitions {
+	padding-bottom: 1rem;
+	padding-left: 15px;
+	padding-right: 15px;
+
+	ul {
+		border-bottom: 1px solid black;
+		list-style: none;
+		padding: 0 0 0.5rem 0;
+		margin: 0;
+		text-align: right;
+
+		li {
+			display: inline;
+			
+			margin-left: 2rem;
+
+			a {
+				opacity: 0.5;
+				text-transform: uppercase;
+				font-size: 12px;
+
+				&.active {
+					opacity: 1;
+				}
+			}
+		}
+	}
+}
