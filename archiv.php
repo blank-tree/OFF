@@ -35,7 +35,7 @@
 
 			<div class="cell small-12" id="exhibitions">
 				<ul>
-					<?php /*<li><a href="/archiv?exhibition=refresh" class="disabled">Refresh ZHdK</a></li> */ ?>
+					<li><a href="/archiv?exhibition=refresh" class="<?= $exhibition == 'refresh' ? 'active' : '' ?>">Refresh ZHdK</a></li>
 					<li><a href="/archiv?exhibition=biennale" class="<?= $exhibition == 'biennale' ? 'active' : '' ?>">Design Biennale</a></li>
 					<li><a href="/archiv?exhibition=diplom" class="<?= $exhibition == 'diplom' ? 'active' : '' ?>">Diplomausstellung</a></li>
 				</ul>
