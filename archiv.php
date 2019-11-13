@@ -35,6 +35,7 @@
 
 			<div class="cell small-12" id="exhibitions">
 				<ul>
+					<li><a href="/archiv?exhibition=eth" class="<?= $exhibition == 'eth' ? 'active' : '' ?>">Design for Sustainable Development ETH</a></li>
 					<li><a href="/archiv?exhibition=refresh" class="<?= $exhibition == 'refresh' ? 'active' : '' ?>">Refresh ZHdK</a></li>
 					<li><a href="/archiv?exhibition=biennale" class="<?= $exhibition == 'biennale' ? 'active' : '' ?>">Design Biennale</a></li>
 					<li><a href="/archiv?exhibition=diplom" class="<?= $exhibition == 'diplom' ? 'active' : '' ?>">Diplomausstellung</a></li>
