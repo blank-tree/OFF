@@ -3,6 +3,9 @@
 - Concept, Design and Project by [Meret Fischli](https://www.instagram.com/meretfischli/)
 - Interaction Design & Development by [Fernando Obieta](https://fernando-obieta.com)
 
+![OFF](https://be.fernando-obieta.com/wp-content/uploads/2019/09/off01.png)
+![OFF - animated](https://be.fernando-obieta.com/wp-content/uploads/2019/09/off.gif)
+
 ## Installation
 
 To deploy this site, your server needs:
